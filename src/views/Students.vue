@@ -1,7 +1,7 @@
 <template>
   <div class="students">
     <Search v-on:search="(query) => (filter = query)" />
-    <table>
+    <table class="table">
       <tr>
         <th>Name</th>
         <th>Surname</th>
@@ -68,15 +68,9 @@ export default {
 </script>
 
 <style scoped>
-table,
-tr,
-td,
-th {
-  border: 1px solid black;
-  border-collapse: collapse;
-  padding: 5px;
-}
-th {
-  background-color: rgb(111, 43, 175, 0.5);
+.students {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

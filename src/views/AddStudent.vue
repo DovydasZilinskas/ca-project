@@ -33,8 +33,8 @@
         </div>
       </div>
 
-      <div class="field">
-        <label class="label" for="birthdate">Date of Birth</label>
+      <label class="label">Date of Birth</label>
+      <div class="field birth">
         <div class="control">
           <input v-model="year" class="input" id="year" type="number" placeholder="Birth Year" />
         </div>
@@ -167,3 +167,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.birth {
+  display: flex;
+}
+</style>
