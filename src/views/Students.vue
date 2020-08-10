@@ -1,5 +1,6 @@
 <template>
   <div class="students">
+    <Search v-on:search="(query) => (filter = query)" />
     <table>
       <tr>
         <th>Name</th>
@@ -9,7 +10,7 @@
         <th>Phone</th>
         <th>Email</th>
       </tr>
-      <tr v-for="student in students" :key="student.id">
+      <tr v-for="student in filteredStudents" :key="student.id">
         <td>{{student.name}}</td>
         <td>{{student.surname}}</td>
         <td>{{student.year}} {{student.month}} {{student.day}}</td>
@@ -24,13 +25,23 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
+import Search from "../components/Search";
 
 export default {
   name: "Students",
+  components: { Search },
   data() {
     return {
       students: [],
+      filter: "",
     };
+  },
+  computed: {
+    filteredStudents() {
+      return this.students.filter((students) => {
+        return students.name.toLowerCase().includes(this.filter.toLowerCase());
+      });
+    },
   },
   beforeMount() {
     firebase

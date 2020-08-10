@@ -6,7 +6,7 @@
           v-model="query"
           class="input"
           type="search"
-          placeholder="Find a product"
+          placeholder="Search..."
           v-on:keyup="callParent"
         />
       </p>
