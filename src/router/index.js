@@ -11,7 +11,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    redirect: "/login",
+    redirect: "/students",
   },
   {
     path: "/login",
@@ -29,6 +29,24 @@ const routes = [
       import(/* webpackChunkName: "register" */ "../views/Register.vue"),
     meta: {
       requiresAnon: true,
+    },
+  },
+  {
+    path: "/add",
+    name: "AddStudent",
+    component: () =>
+      import(/* webpackChunkName: "add" */ "../views/AddStudent.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/students",
+    name: "Students",
+    component: () =>
+      import(/* webpackChunkName: "students" */ "../views/Students.vue"),
+    meta: {
+      requiresAuth: true,
     },
   },
 ];

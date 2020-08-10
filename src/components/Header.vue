@@ -55,7 +55,7 @@ export default {
       loggedIn: false,
       firstname: "",
       links: [
-        { name: "Students", url: "/" },
+        { name: "Students", url: "/students" },
         { name: "Add Student", url: "/add" },
       ],
     };
