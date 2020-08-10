@@ -30,10 +30,10 @@
                   class="button is-light"
                 >Logout ({{ this.firstname }})</button>
                 <span v-else>
-                  <router-link to="/register" class="button is-dark">
+                  <router-link to="/register" class="button is-info">
                     <strong>Sign up</strong>
                   </router-link>
-                  <router-link to="/login" class="button is-light">Log in</router-link>
+                  <router-link to="/login" class="button is-dark">Log in</router-link>
                 </span>
               </div>
             </div>

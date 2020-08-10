@@ -22,6 +22,15 @@ const routes = [
       requiresAnon: true,
     },
   },
+  {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/Register.vue"),
+    meta: {
+      requiresAnon: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
@@ -35,7 +44,7 @@ router.beforeEach((to, from, next) => {
     if (!user && to.matched.some((route) => route.meta.requiresAuth)) {
       next({ path: "/login" });
     } else if (user && to.matched.some((route) => route.meta.requiresAnon)) {
-      next({ path: "/home" });
+      next({ path: "/" });
     } else {
       next();
     }
