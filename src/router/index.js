@@ -62,7 +62,7 @@ router.beforeEach((to, from, next) => {
     if (!user && to.matched.some((route) => route.meta.requiresAuth)) {
       next({ path: "/login" });
     } else if (user && to.matched.some((route) => route.meta.requiresAnon)) {
-      next({ path: "/students" });
+      next({ path: "/" });
     } else {
       next();
     }

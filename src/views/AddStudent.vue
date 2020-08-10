@@ -22,15 +22,14 @@
       </div>
 
       <div class="field">
+        <label class="label">Gender</label>
         <div class="control">
-          <label class="radio">
-            <input type="radio" v-model="male" name="gender" />
-            Male
-          </label>
-          <label class="radio">
-            <input type="radio" v-model="female" name="gender" />
-            Female
-          </label>
+          <div class="select">
+            <select v-model="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -42,26 +41,24 @@
         <div class="control">
           <div class="select">
             <select v-model="month">
-              <option>Select Month</option>
-              <option value="january">January</option>
-              <option value="february">February</option>
-              <option value="march">March</option>
-              <option value="april">April</option>
-              <option value="may">May</option>
-              <option value="june">June</option>
-              <option value="july">July</option>
-              <option value="august">August</option>
-              <option value="september">September</option>
-              <option value="october">October</option>
-              <option value="november">November</option>
-              <option value="december">December</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
             </select>
           </div>
         </div>
         <div class="control">
           <div class="select">
             <select v-model="day">
-              <option>Select Day</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -135,8 +132,7 @@ export default {
       day: "",
       phone: "",
       email: "",
-      male: true,
-      female: true,
+      gender: "",
       error: false,
       type: "",
       errorMessage: "",
@@ -151,12 +147,11 @@ export default {
           name: this.name,
           year: Number(this.year),
           day: Number(this.day),
-          month: Number(this.month),
+          month: this.month,
           surname: this.surname,
           phone: this.phone,
           email: this.email,
-          male: this.male,
-          female: this.female,
+          gender: this.gender,
         })
         .then(() => {
           this.error = true;
@@ -170,31 +165,5 @@ export default {
         });
     },
   },
-  // methods: {
-  //   add() {
-  //     fetch("http://94.176.235.3/homes", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         image: this.image,
-  //         price: this.price,
-  //         description: this.description,
-  //         city: this.city,
-  //       }),
-  //     })
-  //       .then(() => {
-  //         this.error = true;
-  //         this.type = "is-success";
-  //         this.errorMessage = "Added";
-  //       })
-  //       .catch((error) => {
-  //         this.error = true;
-  //         this.type = "is-danger";
-  //         this.errorMessage = `There was a problem with something. ${error.message}`;
-  //       });
-  //   },
-  // },
 };
 </script>
