@@ -196,4 +196,10 @@ export default {
 .birth {
   display: flex;
 }
+#selected {
+  color: black;
+}
+#year::placeholder {
+  color: black;
+}
 </style>
