@@ -49,6 +49,24 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/groups",
+    name: "Groups",
+    component: () =>
+      import(/* webpackChunkName: "groups" */ "../views/Groups.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/addgroup",
+    name: "AddGroup",
+    component: () =>
+      import(/* webpackChunkName: "addgroup" */ "../views/AddGroup.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
