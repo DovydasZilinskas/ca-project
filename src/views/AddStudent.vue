@@ -46,7 +46,8 @@
         <div class="control">
           <input
             v-model="year"
-            maxlength="4"
+            max="2021"
+            min="1920"
             class="input"
             id="year"
             type="number"
@@ -127,6 +128,8 @@
                 id="phone"
                 type="tel"
                 placeholder="Phone Number"
+                maxlength="8"
+                minlength="8"
                 required
               />
             </p>
@@ -209,5 +212,8 @@ export default {
 }
 #year::placeholder {
   color: black;
+}
+#year {
+  width: 120px;
 }
 </style>
