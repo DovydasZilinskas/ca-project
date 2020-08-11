@@ -3,7 +3,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
-          <strong>CA-Students</strong> by
+          <strong>CA-Students DB</strong> by
           <a href="https://www.codeacademy.lt">Code Academy</a>.
         </p>
       </div>
