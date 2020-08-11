@@ -10,7 +10,7 @@
       <tr v-for="group in filteredGroups" :key="group.id">
         <td>{{group.name}}</td>
         <td>{{group.lecturer}}</td>
-        <td>{{group.studentList}}</td>
+        <td>{{group.studentListGroup.join(', ')}}</td>
       </tr>
     </table>
   </div>
@@ -48,7 +48,7 @@ export default {
             id: doc.id,
             name: doc.data().name,
             lecturer: doc.data().lecturer,
-            studentList: doc.data().studentList,
+            studentListGroup: doc.data().studentListGroup,
           })
         )
       );

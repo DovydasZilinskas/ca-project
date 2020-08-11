@@ -10,7 +10,7 @@
       <div class="field">
         <label class="label">Name</label>
         <div class="control">
-          <input v-model="name" class="input" type="text" placeholder="Program Name" />
+          <input v-model="groupName" class="input" type="text" placeholder="Program Name" />
         </div>
       </div>
 
@@ -23,14 +23,18 @@
 
       <div class="field">
         <label class="label">Student List</label>
-        <div class="control">
-          <div class="select">
-            <select>
-              <option>Select dropdown</option>
-              <option>With options</option>
-            </select>
-          </div>
-        </div>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="student in students" :key="student.id">
+            <label>
+              <input
+                type="checkbox"
+                :value="`${student.name} ${student.surname}`"
+                v-model="studentListGroup"
+              />
+              {{`${student.name} ${student.surname}`}}
+            </label>
+          </li>
+        </ul>
       </div>
 
       <div class="buttons">
@@ -50,38 +54,27 @@ export default {
   components: { Notification },
   data() {
     return {
+      studentListGroup: [],
+      students: [],
+      groupName: "",
       name: "",
-      studentName: "",
+      student: "",
       lecturer: "",
-      studentList: [],
       error: false,
       type: "",
       errorMessage: "",
     };
   },
-  beforeMount() {
-    firebase
-      .firestore()
-      .collection("students")
-      .get()
-      .then((snapshot) =>
-        snapshot.docs.forEach((doc) =>
-          this.students.push({
-            id: doc.id,
-            studentName: doc.data().name,
-          })
-        )
-      );
-  },
+
   methods: {
     add() {
       firebase
         .firestore()
         .collection("groups")
         .add({
-          name: this.name,
+          name: this.groupName,
           lecturer: this.lecturer,
-          studentList: this.studentList,
+          studentListGroup: this.studentListGroup,
         })
         .then(() => {
           this.error = true;
@@ -94,6 +87,21 @@ export default {
           this.errorMessage = `There was a problem with something. ${error.message}`;
         });
     },
+  },
+  beforeMount() {
+    firebase
+      .firestore()
+      .collection("students")
+      .get()
+      .then((snapshot) =>
+        snapshot.docs.forEach((doc) =>
+          this.students.push({
+            id: doc.id,
+            name: doc.data().name,
+            surname: doc.data().surname,
+          })
+        )
+      );
   },
 };
 </script>
