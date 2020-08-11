@@ -46,6 +46,7 @@
         <div class="control">
           <input
             v-model="year"
+            maxlength="4"
             class="input"
             id="year"
             type="number"
@@ -114,17 +115,44 @@
 
       <div class="field">
         <label class="label" for="phone">Phone</label>
-        <div class="control">
-          <input
-            v-model="phone"
-            class="input"
-            id="phone"
-            type="number"
-            placeholder="Phone"
-            required
-          />
+        <div class="field is-expanded">
+          <div class="field has-addons">
+            <p class="control">
+              <a class="button is-static">+370</a>
+            </p>
+            <p class="control is-expanded">
+              <input
+                v-model="phone"
+                class="input"
+                id="phone"
+                type="tel"
+                placeholder="Phone Number"
+                required
+              />
+            </p>
+          </div>
+          <p class="help">Do not enter the first zero e.g. 69202294</p>
         </div>
       </div>
+
+      <!-- <div class="field is-horizontal">
+  <div class="field-label"></div>
+  <div class="field-body">
+    <div class="field is-expanded">
+      <div class="field has-addons">
+        <p class="control">
+          <a class="button is-static">
+            +44
+          </a>
+        </p>
+        <p class="control is-expanded">
+          <input class="input" type="tel" placeholder="Your phone number">
+        </p>
+      </div>
+
+    </div>
+  </div>
+      </div>-->
 
       <div class="field">
         <label class="label" for="email">Email</label>
