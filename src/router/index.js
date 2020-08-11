@@ -67,6 +67,15 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/editstudent/:id",
+    name: "EditStudent",
+    component: () =>
+      import(/* webpackChunkName: "editstudent" */ "../views/EditStudent.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
