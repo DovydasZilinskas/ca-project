@@ -10,14 +10,21 @@
       <div class="field">
         <label class="label" for="name">Name</label>
         <div class="control">
-          <input v-model="name" class="input" id="name" type="text" placeholder="Name" />
+          <input v-model="name" class="input" id="name" type="text" placeholder="Name" required />
         </div>
       </div>
 
       <div class="field">
         <label class="label" for="surname">Surname</label>
         <div class="control">
-          <input v-model="surname" class="input" id="surname" type="text" placeholder="Surname" />
+          <input
+            v-model="surname"
+            class="input"
+            id="surname"
+            type="text"
+            placeholder="Surname"
+            required
+          />
         </div>
       </div>
 
@@ -26,6 +33,7 @@
         <div class="control">
           <div class="select">
             <select v-model="gender">
+              <option value disabled selected>Select</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
@@ -36,11 +44,19 @@
       <label class="label">Date of Birth</label>
       <div class="field birth">
         <div class="control">
-          <input v-model="year" class="input" id="year" type="number" placeholder="Birth Year" />
+          <input
+            v-model="year"
+            class="input"
+            id="year"
+            type="number"
+            placeholder="Birth Year"
+            required
+          />
         </div>
         <div class="control">
           <div class="select">
-            <select v-model="month">
+            <select v-model="month" required>
+              <option value disabled selected>Month</option>
               <option value="January">January</option>
               <option value="February">February</option>
               <option value="March">March</option>
@@ -58,7 +74,8 @@
         </div>
         <div class="control">
           <div class="select">
-            <select v-model="day">
+            <select v-model="day" required>
+              <option value disabled selected>Day</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -98,14 +115,21 @@
       <div class="field">
         <label class="label" for="phone">Phone</label>
         <div class="control">
-          <input v-model="phone" class="input" id="phone" type="number" placeholder="Phone" />
+          <input
+            v-model="phone"
+            class="input"
+            id="phone"
+            type="number"
+            placeholder="Phone"
+            required
+          />
         </div>
       </div>
 
       <div class="field">
         <label class="label" for="email">Email</label>
         <div class="control">
-          <input v-model="email" class="input" id="email" type="email" placeholder="Email" />
+          <input v-model="email" class="input" id="email" type="email" placeholder="Email" required />
         </div>
         <!-- <p class="help is-danger">Provide as much details as you can</p> -->
       </div>
