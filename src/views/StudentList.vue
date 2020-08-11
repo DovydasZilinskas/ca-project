@@ -10,9 +10,14 @@
         <th>Phone</th>
         <th>Email</th>
       </tr>
+
       <tr v-for="student in filteredStudents" :key="student.id">
-        <td>{{student.name}}</td>
-        <td>{{student.surname}}</td>
+        <td>
+          <router-link :to="/editstudent/ + student.id">{{student.name}}</router-link>
+        </td>
+        <td>
+          <router-link :to="/editstudent/ + student.id">{{student.surname}}</router-link>
+        </td>
         <td>{{student.year}} {{student.month}} {{student.day}}</td>
         <td>{{student.gender}}</td>
         <td>{{student.phone}}</td>
