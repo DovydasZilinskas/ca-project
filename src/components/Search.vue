@@ -6,7 +6,7 @@
           v-model="query"
           class="input"
           type="search"
-          placeholder="Search..."
+          placeholder="Search by student name"
           v-on:keyup="callParent"
         />
       </p>
