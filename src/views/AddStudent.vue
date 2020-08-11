@@ -135,31 +135,11 @@
         </div>
       </div>
 
-      <!-- <div class="field is-horizontal">
-  <div class="field-label"></div>
-  <div class="field-body">
-    <div class="field is-expanded">
-      <div class="field has-addons">
-        <p class="control">
-          <a class="button is-static">
-            +44
-          </a>
-        </p>
-        <p class="control is-expanded">
-          <input class="input" type="tel" placeholder="Your phone number">
-        </p>
-      </div>
-
-    </div>
-  </div>
-      </div>-->
-
       <div class="field">
         <label class="label" for="email">Email</label>
         <div class="control">
           <input v-model="email" class="input" id="email" type="email" placeholder="Email" required />
         </div>
-        <!-- <p class="help is-danger">Provide as much details as you can</p> -->
       </div>
       <div class="buttons">
         <button type="submit" class="button is-info">Add Student</button>
