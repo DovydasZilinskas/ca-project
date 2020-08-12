@@ -10,7 +10,9 @@
       <tr v-for="group in groups" :key="group.id">
         <td>{{group.name}}</td>
         <td>{{group.lecturer}}</td>
-        <td>{{group.studentListGroup.join(', ')}}</td>
+        <td>
+          <li v-for="item in group.studentListGroup" :key="item.id">{{item}}</li>
+        </td>
       </tr>
     </table>
   </div>
@@ -27,6 +29,7 @@ export default {
   data() {
     return {
       groups: [],
+      studentListGroup: [],
       filter: "",
     };
   },
@@ -42,45 +45,31 @@ export default {
       .firestore()
       .collection("groups")
       .get()
-      .then((snapshot) => {
-        snapshot.docs.forEach((doc) =>
-          this.groups.push({
-            id: doc.id,
-            name: doc.data().name,
-            lecturer: doc.data().lecturer,
-            studentListGroup: doc.data().studentListGroup,
-          })
-        );
-        firebase
-          .firestore()
-          .collection("students")
-          .doc()
-          .get()
-          .then((snapshot) => {
-            snapshot.docs.forEach((doc) =>
-              this.students.push({
-                studentListGroup: doc.data().name + doc.data().surnname,
+      .then((snapshot) =>
+        snapshot.docs.forEach((doc) => {
+          let students = [];
+          doc.data().studentListGroup.forEach((studentId, index) => {
+            firebase
+              .firestore()
+              .collection("students")
+              .doc(studentId)
+              .get()
+              .then((student) => {
+                students.push(student.data().name);
               })
-            );
+              .then(() => {
+                if (doc.data().studentListGroup.length - 1 === index) {
+                  this.groups.push({
+                    name: doc.data().name,
+                    lecturer: doc.data().lecturer,
+                    studentListGroup: students,
+                  });
+                }
+              });
           });
-      });
+        })
+      );
   },
-  // beforeMount() {
-  //   firebase
-  //     .firestore()
-  //     .collection("groups")
-  //     .get()
-  //     .then((snapshot) =>
-  //       snapshot.docs.forEach((doc) =>
-  //         this.groups.push({
-  //           id: doc.id,
-  //           name: doc.data().name,
-  //           lecturer: doc.data().lecturer,
-  //           studentListGroup: doc.data().studentListGroup,
-  //         })
-  //       )
-  //     );
-  // },
 };
 </script>
 
