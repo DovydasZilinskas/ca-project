@@ -7,7 +7,7 @@
         <th>Lecturer</th>
         <th>Student List</th>
       </tr>
-      <tr v-for="group in groups" :key="group.id">
+      <tr v-for="group in filteredStudents" :key="group.id">
         <td>{{group.name}}</td>
         <td>{{group.lecturer}}</td>
         <td>
@@ -33,13 +33,13 @@ export default {
       filter: "",
     };
   },
-  // computed: {
-  //   filteredGroups() {
-  //     return this.groups.filter((groups) => {
-  //       return groups.name.toLowerCase().includes(this.filter.toLowerCase());
-  //     });
-  //   },
-  // },
+  computed: {
+    filteredStudents() {
+      return this.groups.filter((groups) => {
+        return groups.name.toLowerCase().includes(this.filter.toLowerCase());
+      });
+    },
+  },
   beforeMount() {
     firebase
       .firestore()
