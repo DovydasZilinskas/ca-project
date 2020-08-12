@@ -59,10 +59,28 @@ const routes = [
     },
   },
   {
+    path: "/classes",
+    name: "Classes",
+    component: () =>
+      import(/* webpackChunkName: "classes" */ "../views/Classes.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/addgroup",
     name: "AddGroup",
     component: () =>
       import(/* webpackChunkName: "addgroup" */ "../views/AddGroup.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/createclass",
+    name: "CreateClass",
+    component: () =>
+      import(/* webpackChunkName: "createclass" */ "../views/CreateClass.vue"),
     meta: {
       requiresAuth: true,
     },
@@ -81,6 +99,15 @@ const routes = [
     name: "EditGroup",
     component: () =>
       import(/* webpackChunkName: "editgroup" */ "../views/EditGroup.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/editclass/:id",
+    name: "EditClass",
+    component: () =>
+      import(/* webpackChunkName: "editclass" */ "../views/EditClass.vue"),
     meta: {
       requiresAuth: true,
     },
