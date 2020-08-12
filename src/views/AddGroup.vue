@@ -26,12 +26,11 @@
         <ul class="list-group">
           <li class="list-group-item" v-for="student in students" :key="student.id">
             <label>
-              <!-- <input
+              <input
                 type="checkbox"
                 :value="`${student.name} ${student.surname}`"
                 v-model="studentListGroup"
-              />-->
-              <input type="checkbox" :value="`${student.id}`" v-model="studentListGroup" />
+              />
               {{`${student.name} ${student.surname}`}}
             </label>
           </li>

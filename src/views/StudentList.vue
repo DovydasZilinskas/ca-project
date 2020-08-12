@@ -12,7 +12,6 @@
         <th></th>
       </tr>
 
-      <!-- <router-link :to="/editstudent/ + student.id"></router-link> -->
       <tr v-for="student in filteredStudents" :key="student.id">
         <td>{{student.name}}</td>
         <td>{{student.surname}}</td>
