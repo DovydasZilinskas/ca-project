@@ -82,6 +82,9 @@ export default {
           this.type = "is-danger";
           this.errorMessage = `There was a problem with something. ${error.message}`;
         });
+      this.groupName = "";
+      this.lecturer = "";
+      this.studentListGroup = "";
     },
   },
   beforeMount() {

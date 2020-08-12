@@ -198,6 +198,14 @@ export default {
           this.type = "is-danger";
           this.errorMessage = `There was a problem with something. ${error.message}`;
         });
+      this.name = "";
+      this.year = "";
+      this.day = "";
+      this.month = "";
+      this.surname = "";
+      this.phone = "";
+      this.email = "";
+      this.gender = "";
     },
   },
 };
