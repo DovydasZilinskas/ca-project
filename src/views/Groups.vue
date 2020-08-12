@@ -7,7 +7,7 @@
         <th>Lecturer</th>
         <th>Student List</th>
       </tr>
-      <tr v-for="group in filteredGroups" :key="group.id">
+      <tr v-for="group in groups" :key="group.id">
         <td>{{group.name}}</td>
         <td>{{group.lecturer}}</td>
         <td>{{group.studentListGroup.join(', ')}}</td>
@@ -30,19 +30,19 @@ export default {
       filter: "",
     };
   },
-  computed: {
-    filteredGroups() {
-      return this.groups.filter((groups) => {
-        return groups.name.toLowerCase().includes(this.filter.toLowerCase());
-      });
-    },
-  },
+  // computed: {
+  //   filteredGroups() {
+  //     return this.groups.filter((groups) => {
+  //       return groups.name.toLowerCase().includes(this.filter.toLowerCase());
+  //     });
+  //   },
+  // },
   beforeMount() {
     firebase
       .firestore()
       .collection("groups")
-      .get(this.$route.params.id)
-      .then((snapshot) =>
+      .get()
+      .then((snapshot) => {
         snapshot.docs.forEach((doc) =>
           this.groups.push({
             id: doc.id,
@@ -50,9 +50,37 @@ export default {
             lecturer: doc.data().lecturer,
             studentListGroup: doc.data().studentListGroup,
           })
-        )
-      );
+        );
+        firebase
+          .firestore()
+          .collection("students")
+          .doc()
+          .get()
+          .then((snapshot) => {
+            snapshot.docs.forEach((doc) =>
+              this.students.push({
+                studentListGroup: doc.data().name + doc.data().surnname,
+              })
+            );
+          });
+      });
   },
+  // beforeMount() {
+  //   firebase
+  //     .firestore()
+  //     .collection("groups")
+  //     .get()
+  //     .then((snapshot) =>
+  //       snapshot.docs.forEach((doc) =>
+  //         this.groups.push({
+  //           id: doc.id,
+  //           name: doc.data().name,
+  //           lecturer: doc.data().lecturer,
+  //           studentListGroup: doc.data().studentListGroup,
+  //         })
+  //       )
+  //     );
+  // },
 };
 </script>
 

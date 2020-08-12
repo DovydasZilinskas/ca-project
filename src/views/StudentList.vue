@@ -17,7 +17,7 @@
         <td>{{student.surname}}</td>
         <td>{{student.year}} {{student.month}} {{student.day}}</td>
         <td>{{student.gender}}</td>
-        <td>{{student.phone}}</td>
+        <td>+370{{student.phone}}</td>
         <td>{{student.email}}</td>
         <td>
           <router-link class="tag is-light" :to="/editstudent/ + student.id">Edit</router-link>
