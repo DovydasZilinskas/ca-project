@@ -1,12 +1,12 @@
 <template>
-  <div class="add-group">
+  <div class="edit-group">
     <Notification
       v-on:displaynot="error = false"
       v-if="error"
       type="is-link"
       :message="errorMessage"
     />
-    <form v-on:submit.prevent="add()">
+    <form v-on:submit.prevent="update()">
       <div class="field">
         <label class="label">Name</label>
         <div class="control">
@@ -20,6 +20,7 @@
           <input v-model="lecturer" class="input" type="text" placeholder="Lecturer" />
         </div>
       </div>
+
       <div class="teiblas">
         <label class="label">Student List</label>
         <table class="table is-hoverable">
@@ -28,7 +29,6 @@
               <th>Name</th>
               <th>Surname</th>
               <th class="center">Add</th>
-              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -38,16 +38,13 @@
               <td class="center">
                 <input type="checkbox" :value="`${student.id}`" v-model="studentListGroup" />
               </td>
-              <td>
-                <router-link class="tag is-light" :to="/editstudent/ + student.id">Edit</router-link>
-              </td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="buttons">
-        <button type="submit" class="button is-info">Add Group</button>
+        <button type="submit" class="button is-info">Update Group</button>
       </div>
     </form>
   </div>
@@ -56,10 +53,11 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
+import "firebase/auth";
 import Notification from "../components/Notification";
 
 export default {
-  name: "AddGroup",
+  name: "EditGroup",
   components: { Notification },
   data() {
     return {
@@ -69,38 +67,53 @@ export default {
       name: "",
       student: "",
       lecturer: "",
+      loading: false,
       error: false,
-      type: "",
+      errorType: "",
       errorMessage: "",
     };
   },
-
   methods: {
-    add() {
+    update() {
+      this.loading = true;
       firebase
         .firestore()
         .collection("groups")
-        .add({
+        .doc(this.$route.params.id)
+        .set({
           name: this.groupName,
           lecturer: this.lecturer,
           studentListGroup: this.studentListGroup,
         })
-        .then(() => {
-          this.error = true;
-          this.type = "is-success";
-          this.errorMessage = "Added";
-        })
-        .catch((error) => {
-          this.error = true;
-          this.type = "is-danger";
-          this.errorMessage = `There was a problem with something. ${error.message}`;
-        });
-      this.groupName = "";
-      this.lecturer = "";
-      this.studentListGroup = "";
+        .then(
+          () => {
+            this.error = true;
+            this.errorType = "is-light";
+            this.errorMessage = "Succesfully updated";
+            this.loading = false;
+          },
+          (error) => {
+            this.error = true;
+            this.errorType = "is-danger";
+            this.errorMessage = error.message;
+            this.loading = false;
+          }
+        );
     },
   },
   beforeMount() {
+    firebase
+      .firestore()
+      .collection("groups")
+      .doc(this.$route.params.id)
+      .get()
+      .then((doc) => {
+        if (doc) {
+          this.groupName = doc.data().name;
+          this.lecturer = doc.data().lecturer;
+          this.studentListGroup = doc.data().studentListGroup;
+        }
+      });
     firebase
       .firestore()
       .collection("students")
@@ -117,6 +130,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 .center {

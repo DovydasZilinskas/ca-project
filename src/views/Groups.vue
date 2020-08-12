@@ -1,17 +1,21 @@
 <template>
-  <div class="students">
+  <div class="groups">
     <Search v-on:search="(query) => (filter = query)" />
     <table class="table">
       <tr>
         <th>Name</th>
         <th>Lecturer</th>
         <th>Student List</th>
+        <th></th>
       </tr>
       <tr v-for="group in filteredStudents" :key="group.id">
         <td>{{group.name}}</td>
         <td>{{group.lecturer}}</td>
         <td>
           <li v-for="item in group.studentListGroup" :key="item.id">{{item}}</li>
+        </td>
+        <td>
+          <router-link class="tag is-light" :to="/editgroup/ + group.id">Edit</router-link>
         </td>
       </tr>
     </table>
@@ -74,7 +78,7 @@ export default {
 </script>
 
 <style scoped>
-.students {
+.groups {
   display: flex;
   flex-direction: column;
   align-items: center;

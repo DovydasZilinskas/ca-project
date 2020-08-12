@@ -76,6 +76,15 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/editgroup/:id",
+    name: "EditGroup",
+    component: () =>
+      import(/* webpackChunkName: "editgroup" */ "../views/EditGroup.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 const router = new VueRouter({
