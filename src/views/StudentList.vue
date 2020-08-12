@@ -9,19 +9,20 @@
         <th>Gender</th>
         <th>Phone</th>
         <th>Email</th>
+        <th></th>
       </tr>
 
+      <!-- <router-link :to="/editstudent/ + student.id"></router-link> -->
       <tr v-for="student in filteredStudents" :key="student.id">
-        <td>
-          <router-link :to="/editstudent/ + student.id">{{student.name}}</router-link>
-        </td>
-        <td>
-          <router-link :to="/editstudent/ + student.id">{{student.surname}}</router-link>
-        </td>
+        <td>{{student.name}}</td>
+        <td>{{student.surname}}</td>
         <td>{{student.year}} {{student.month}} {{student.day}}</td>
         <td>{{student.gender}}</td>
         <td>{{student.phone}}</td>
         <td>{{student.email}}</td>
+        <td>
+          <router-link class="tag is-light" :to="/editstudent/ + student.id">Edit</router-link>
+        </td>
       </tr>
     </table>
   </div>
@@ -40,6 +41,11 @@ export default {
       students: [],
       filter: "",
     };
+  },
+  methods: {
+    activate: function (el) {
+      this.active_el = el;
+    },
   },
   computed: {
     filteredStudents() {
@@ -77,5 +83,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+tr:not(:first-child):hover {
+  background-color: rgba(238, 236, 236, 0.2);
 }
 </style>

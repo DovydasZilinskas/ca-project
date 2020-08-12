@@ -37,11 +37,38 @@ export default {
       });
     },
   },
+  // methods: {
+  //   update() {
+  //     this.loading = true;
+  //     firebase
+  //       .firestore()
+  //       .collection("students")
+  //       .doc()
+  //       .set({
+  //         name: this.name,
+  //         surname: this.surname,
+  //       })
+  //       .then(
+  //         () => {
+  //           this.error = true;
+  //           this.errorType = "is-light";
+  //           this.errorMessage = "Succesfully updated";
+  //           this.loading = false;
+  //         },
+  //         (error) => {
+  //           this.error = true;
+  //           this.errorType = "is-danger";
+  //           this.errorMessage = error.message;
+  //           this.loading = false;
+  //         }
+  //       );
+  //   },
+  // },
   beforeMount() {
     firebase
       .firestore()
       .collection("groups")
-      .get()
+      .get(this.$route.params.id)
       .then((snapshot) =>
         snapshot.docs.forEach((doc) =>
           this.groups.push({
