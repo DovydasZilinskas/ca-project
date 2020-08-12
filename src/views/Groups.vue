@@ -64,6 +64,7 @@ export default {
               .then(() => {
                 if (doc.data().studentListGroup.length - 1 === index) {
                   this.groups.push({
+                    id: doc.id,
                     name: doc.data().name,
                     lecturer: doc.data().lecturer,
                     studentListGroup: students,
