@@ -21,17 +21,29 @@
         </div>
       </div>
 
-      <div class="field">
-        <label class="label">Student List</label>
-        <ul class="list-group">
-          <li class="list-group-item" v-for="student in students" :key="student.id">
-            <label>
+      <label class="label">Student List</label>
+      <table class="table is-hoverable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th class="center">Add</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="student in students" :key="student.id">
+            <td>{{student.name}}</td>
+            <td>{{student.surname}}</td>
+            <td class="center">
               <input type="checkbox" :value="`${student.id}`" v-model="studentListGroup" />
-              {{`${student.name} ${student.surname}`}}
-            </label>
-          </li>
-        </ul>
-      </div>
+            </td>
+            <td>
+              <router-link class="tag is-light" :to="/editstudent/ + student.id">Edit</router-link>
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
       <div class="buttons">
         <button type="submit" class="button is-info">Add Group</button>
@@ -106,4 +118,7 @@ export default {
 </script>
 
 <style scoped>
+.center {
+  text-align: center;
+}
 </style>
