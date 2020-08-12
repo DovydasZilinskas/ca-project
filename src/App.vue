@@ -17,3 +17,9 @@ export default {
   components: { Header, Footer },
 };
 </script>
+
+<style scoped>
+.container {
+  margin-bottom: 100px;
+}
+</style>

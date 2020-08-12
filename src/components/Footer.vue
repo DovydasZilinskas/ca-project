@@ -23,5 +23,6 @@ export default {
   bottom: 0;
   width: 100%;
   padding: 2rem 1.5rem 2rem;
+  height: 100px;
 }
 </style>
