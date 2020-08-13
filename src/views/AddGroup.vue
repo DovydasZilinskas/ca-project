@@ -74,7 +74,6 @@ export default {
       errorMessage: "",
     };
   },
-
   methods: {
     add() {
       firebase
@@ -104,6 +103,7 @@ export default {
     firebase
       .firestore()
       .collection("students")
+      .orderBy("name")
       .get()
       .then((snapshot) =>
         snapshot.docs.forEach((doc) =>

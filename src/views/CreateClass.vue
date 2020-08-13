@@ -7,20 +7,17 @@
       :message="errorMessage"
     />
     <form v-on:submit.prevent="add()">
-      <div class="field">
-        <label class="label">Group</label>
-        <div class="control">
-          <div class="select">
-            <select v-model="groupname">
-              <option value disabled selected>Select Group</option>
-              <option v-for="group in groups" :key="group.id" :value="group.id">{{group.name}}</option>
-            </select>
-          </div>
-        </div>
-      </div>
+      <table class="table">
+        <tr v-for="group in groups" :key="group.id">
+          <td>
+            <input type="checkbox" :value="`${group.id}`" v-model="groupname" />
+            {{group.name}}
+          </td>
+        </tr>
+      </table>
 
       <div class="field">
-        <label class="label">Select Class</label>
+        <label class="label">Select Date</label>
         <div class="control">
           <datepicker v-model="date" :value="date.toString()"></datepicker>
         </div>
@@ -44,9 +41,8 @@ export default {
   data() {
     return {
       date: new Date(),
-      name: "",
-      groupname: "",
       groups: [],
+      groupname: [],
       error: false,
       type: "",
       errorMessage: "",
@@ -57,6 +53,7 @@ export default {
       firebase
         .firestore()
         .collection("classes")
+        .orderBy("name")
         .add({
           groupname: this.groupname,
           date: this.date,

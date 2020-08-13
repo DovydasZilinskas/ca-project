@@ -178,6 +178,7 @@ export default {
       firebase
         .firestore()
         .collection("students")
+        .orderBy("name")
         .add({
           name: this.name,
           year: Number(this.year),
