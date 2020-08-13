@@ -1,7 +1,7 @@
 <template>
   <div class="groups">
     <Search v-on:search="(query) => (filter = query)" />
-    <table class="table">
+    <table class="table is-hoverable">
       <tr>
         <th>Name</th>
         <th>Lecturer</th>
