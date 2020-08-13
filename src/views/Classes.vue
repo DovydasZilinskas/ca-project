@@ -10,11 +10,10 @@
       </thead>
       <tbody>
         <tr v-for="item in classes" :key="item.id">
-          <td>{{item.groupName}}</td>
+          <td>{{item.name}}</td>
           <td>{{item.date}}</td>
           <td>
-            edit
-            <!-- <router-link class="tag is-light" :to="/editgroup/ + group.id">Edit</router-link> -->
+            <router-link class="tag is-light" :to="/editclass/ + item.id">Edit</router-link>
           </td>
         </tr>
       </tbody>
@@ -26,6 +25,7 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import moment from "moment";
+
 export default {
   name: "Classes",
   data() {
@@ -42,10 +42,8 @@ export default {
         snapshot.docs.forEach((doc) =>
           this.classes.push({
             id: doc.id,
-            groupName: doc.data().groupName,
-            date: moment(doc.data().date.toDate())
-              .subtract(10, "days")
-              .calendar(),
+            name: doc.data().groupname,
+            date: moment(doc.data().date.toDate()).format("DD MMM YYYY"),
           })
         )
       );
