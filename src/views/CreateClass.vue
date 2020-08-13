@@ -22,7 +22,7 @@
       <div class="field">
         <label class="label">Select Class</label>
         <div class="control">
-          <datepicker v-model="date" :value="date"></datepicker>
+          <datepicker v-model="date" :value="date.toString()"></datepicker>
         </div>
       </div>
       <div class="buttons">
@@ -71,8 +71,6 @@ export default {
           this.type = "is-danger";
           this.errorMessage = `There was a problem with something. ${error.message}`;
         });
-      this.groupname = "";
-      this.date = new Date();
     },
   },
   beforeMount() {
