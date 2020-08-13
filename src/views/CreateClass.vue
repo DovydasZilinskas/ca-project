@@ -1,5 +1,11 @@
 <template>
   <div class="create-class">
+    <Notification
+      v-on:displaynot="error = false"
+      v-if="error"
+      type="is-link"
+      :message="errorMessage"
+    />
     <form v-on:submit.prevent="add()">
       <div class="field">
         <label class="label">Group</label>
@@ -30,15 +36,20 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 import Datepicker from "vuejs-datepicker";
+import Notification from "../components/Notification";
+
 export default {
   name: "CreateClass",
-  components: { Datepicker },
+  components: { Datepicker, Notification },
   data() {
     return {
       date: new Date(),
       name: "",
       groupname: "",
       groups: [],
+      error: false,
+      type: "",
+      errorMessage: "",
     };
   },
   methods: {
@@ -60,9 +71,8 @@ export default {
           this.type = "is-danger";
           this.errorMessage = `There was a problem with something. ${error.message}`;
         });
-      this.groupName = "";
-      this.lecturer = "";
-      this.studentListGroup = "";
+      this.groupname = "";
+      this.date = new Date();
     },
   },
   beforeMount() {
