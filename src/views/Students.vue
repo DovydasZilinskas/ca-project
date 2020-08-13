@@ -1,28 +1,32 @@
 <template>
   <div class="students">
     <Search v-on:search="(query) => (filter = query)" />
-    <table class="table">
-      <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Birthdate</th>
-        <th>Gender</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th></th>
-      </tr>
+    <table class="table is-hoverable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Birthdate</th>
+          <th>Gender</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
 
-      <tr v-for="student in filteredStudents" :key="student.id">
-        <td>{{student.name}}</td>
-        <td>{{student.surname}}</td>
-        <td>{{student.year}} {{student.month}} {{student.day}}</td>
-        <td>{{student.gender}}</td>
-        <td>+370{{student.phone}}</td>
-        <td>{{student.email}}</td>
-        <td>
-          <router-link class="tag is-light" :to="/editstudent/ + student.id">Edit</router-link>
-        </td>
-      </tr>
+      <tbody>
+        <tr v-for="student in filteredStudents" :key="student.id">
+          <td>{{student.name}}</td>
+          <td>{{student.surname}}</td>
+          <td>{{student.year}} {{student.month}} {{student.day}}</td>
+          <td>{{student.gender}}</td>
+          <td>+370{{student.phone}}</td>
+          <td>{{student.email}}</td>
+          <td>
+            <router-link class="tag is-light" :to="/editstudent/ + student.id">Edit</router-link>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -82,8 +86,5 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-tr:not(:first-child):hover {
-  background-color: rgba(238, 236, 236, 0.2);
 }
 </style>

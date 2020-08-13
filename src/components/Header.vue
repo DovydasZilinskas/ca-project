@@ -59,6 +59,8 @@ export default {
         { name: "Add Student", url: "/add" },
         { name: "Groups", url: "/groups" },
         { name: "Add Groups", url: "/addgroup" },
+        { name: "Create Class", url: "/createclass" },
+        { name: "Classes", url: "/classes" },
       ],
     };
   },
