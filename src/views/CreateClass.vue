@@ -16,12 +16,6 @@
         </tr>
       </table>
 
-      <div class="field">
-        <label class="label">Select Date</label>
-        <div class="control">
-          <datepicker v-model="date" :value="date.toString()"></datepicker>
-        </div>
-      </div>
       <div class="buttons">
         <button type="submit" class="button is-info">Add Class</button>
       </div>
@@ -32,12 +26,11 @@
 <script>
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Datepicker from "vuejs-datepicker";
 import Notification from "../components/Notification";
 
 export default {
   name: "CreateClass",
-  components: { Datepicker, Notification },
+  components: { Notification },
   data() {
     return {
       date: new Date(),
@@ -53,7 +46,6 @@ export default {
       firebase
         .firestore()
         .collection("classes")
-        .orderBy("name")
         .add({
           groupname: this.groupname,
           date: this.date,

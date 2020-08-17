@@ -66,20 +66,6 @@ export default {
         })
       );
   },
-  // beforeMount() {
-  //   firebase
-  //     .firestore()
-  //     .collection("classes")
-  //     .get()
-  //     .then((snapshot) =>
-  //       snapshot.docs.forEach((doc) =>
-  //         this.classes.push({
-  //           id: doc.id,
-  //           name: doc.data().groupname,
-  //           date: moment(doc.data().date.toDate()).format("DD MMM YYYY"),
-  //         })
-  //       )
-  //     );
 };
 </script>
 
